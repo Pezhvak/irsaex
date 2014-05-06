@@ -22,6 +22,7 @@
     -->
     <feature name="http://api.phonegap.com/1.0/device" />
 
+
     <!--
         If you do not want any permissions to be added to your app, add the
         following tag to your config.xml; you will still have the INTERNET
@@ -45,7 +46,8 @@
     <preference name="disable-cursor"             value="false" />          <!-- blackberry: prevents a mouse-icon/cursor from being displayed on the app -->
     <preference name="android-minSdkVersion"      value="7" />              <!-- android: MIN SDK version supported on the target device. MAX version is blank by default. -->
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
-
+    <preference name="DisallowOverscroll"         value="true" />
+    
     <!-- Plugins can also be added here. -->
     <!--
         <gap:plugin name="Example" />
