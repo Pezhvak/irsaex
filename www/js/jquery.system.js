@@ -696,6 +696,13 @@
         }, data: opt.data, method: 'POST'});
     }
 
+    $.system.goBack = function goBack(){
+        var previous = $.mobile.activePage.prev('[data-role=page]');
+        $.mobile.changePage(previous, {
+            transition: 'slide',
+            reverse: true });
+    }
+
     $.system.loginUser = function(){
 
         if($('#login_email').val().length < 3){

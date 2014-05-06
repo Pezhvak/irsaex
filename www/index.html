@@ -155,7 +155,10 @@
                 </form>
             </div>
             <div id="user-dashboard">
-                DASHBOARD
+                <ul data-role="listview" data-inset="true">
+                    <li><a href="#page-changePassword">تغییر کلمه ی عبور</a></li>
+
+                </ul>
             </div>
         </div>
         <div data-role="footer" data-position="fixed" data-tap-toggle="false">
@@ -167,6 +170,18 @@
                     <li><a href="#page-contactus" data-role="tab" data-icon="custom">تماس با ما</a></li>
                 </ul>
             </div>
+        </div>
+    </div>
+    <div id="page-changePassword" data-role="page" data-theme="b">
+        <div data-role="header" class="noLogo">
+            <a data-icon="back" data-rel="back" data-direction="forward">بازگشت</a>
+            <h1>تغییر کلمه ی عبور</h1>
+            <a data-icon="recycle" data-direction="forward" onclick="$.system.goBack();">تغییر</a>
+        </div>
+        <div data-role="content">
+            <input type="password" id="currentPass" title="گذرواژه ی کنونی" placeholder="گذرواژه ی کنونی" />
+            <input type="password" id="newPass" title="گذرواژه ای درخواستی" placeholder="گذرواژه ی نو" />
+            <input type="password" id="reNewPass" title="تکرار گذرواژه ی درخواستی" placeholder="تکرار گذرواژه" />
         </div>
     </div>
 
