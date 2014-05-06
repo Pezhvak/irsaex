@@ -173,15 +173,27 @@
         </div>
     </div>
     <div id="page-changePassword" data-role="page" data-theme="b">
+        <div data-role="popup" id="dialog-wrongOldPassword" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px; direction: rtl">
+            <div data-role="header" data-theme="a">
+                <h1>بروزرسانی</h1>
+            </div>
+            <div role="main" class="ui-content">
+                <h3 class="ui-title">خطا</h3>
+                <p>گذرواژه ی کنونی اشتباه است، درباره تلاش کنید</p>
+                <a class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">باشه</a>
+            </div>
+        </div>
         <div data-role="header" class="noLogo">
             <a data-icon="back" data-rel="back" data-direction="forward">بازگشت</a>
             <h1>تغییر کلمه ی عبور</h1>
-            <a data-icon="recycle" data-direction="forward" onclick="$.system.goBack();">تغییر</a>
+            <a data-icon="recycle" data-direction="forward" onclick="$.system.changeUserPassword();">تغییر</a>
         </div>
         <div data-role="content">
-            <input type="password" id="currentPass" title="گذرواژه ی کنونی" placeholder="گذرواژه ی کنونی" />
-            <input type="password" id="newPass" title="گذرواژه ای درخواستی" placeholder="گذرواژه ی نو" />
-            <input type="password" id="reNewPass" title="تکرار گذرواژه ی درخواستی" placeholder="تکرار گذرواژه" />
+            <form onsubmit="$.system.changeUserPassword(); return false;">
+                <input type="password" id="currentPass" title="گذرواژه ی کنونی" placeholder="گذرواژه ی کنونی" />
+                <input type="password" id="newPass" title="گذرواژه ای درخواستی" placeholder="گذرواژه ی نو" />
+                <input type="password" id="reNewPass" title="تکرار گذرواژه ی درخواستی" placeholder="تکرار گذرواژه" />
+            </form>
         </div>
     </div>
 

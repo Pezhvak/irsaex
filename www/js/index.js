@@ -89,7 +89,6 @@ var app = {
             $.system.updateGolds();
         }, 15 * 1000);
         setInterval(function(){
-
             if(app.storage.getItem('token')==null){
                 $('#user-login').show();
                 $('#user-dashboard').hide();

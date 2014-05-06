@@ -733,6 +733,47 @@
     $.system.logout = function(){
         app.storage.removeItem('token');
     }
+
+    $.system.changeUserPassword = function(){
+        if($('#currentPass').val().length < 6){
+            $('#currentPass').focus();
+            return;
+        }
+
+        if($('#newPass').val().length < 6){
+            $('#newPass').focus();
+            return;
+        }
+
+        if($('#reNewPass').val().length < 6){
+            $('#reNewPass').focus();
+            return;
+        }
+
+        if($('#newPass').val() != $('#reNewPass').val()){
+            $('#newPass').focus();
+            return;
+        }
+
+        $.mobile.loading('show');
+
+        $.ajax({url: 'http://irsaex.ir/account/updatePassword', method: 'post', data: 'currentPass='+$('#currentPass').val()+'&newPass='+$('#newPass').val()+'&token='+app.storage.getItem('token'), complete: function(res){
+            $.mobile.loading('hide');
+
+            if(res.responseJSON.code != 1000){
+                $('#currentPass').val('');
+                $('#dialog-wrongOldPassword').popup('open');
+            }
+            else{
+                $('#currentPass').val('');
+                $('#newPass').val('');
+                $('#reNewPass').val('');
+                $.system.goBack();
+            }
+
+        }});
+
+    }
 })(jQuery);
 
 String.prototype.toPersian = String.prototype.toFaDigit = function (a) {

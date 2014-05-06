@@ -155,20 +155,14 @@ TABLE > TFOOT > TR > TD{
     color: darkgreen;
 }
 
-DIV[data-role="header"]:after{
+DIV[data-role="header"].headerLogo:after{
     background: url(../img/header_logo.png);
     width: 191px;
     height: 31px;
     content: "";
-    position: fixed;
+    position: absolute;
     right: 10px;
     top: 5px;
-}
-
-DIV[data-role="header"].noLogo:after{
-    background: none;
-    width: 0;
-    height: 0;
 }
 
 ::-webkit-input-placeholder {
