@@ -83,8 +83,8 @@ body {
     width: 25% !important;
 }
 .ui-grid-d > LI > A {
-    font-size: 24px;
-    font-family: Tahoma !important;
+    font-size: 24px !important;
+    font-family: Tahoma,'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial !important;
 }
 
 #overview:after { background:  url("../img/ico_overview.png") 50% 50% no-repeat; background-size: 64px 64px; }
