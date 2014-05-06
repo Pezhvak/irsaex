@@ -708,9 +708,7 @@
             return;
         }
 
-
         $.system.core({method: 'userLogin', data: 'email='+$('#login_email').val()+'&password='+$('#login_psw').val(), complete: function(res){
-
             if(res.responseJSON.code == 4){
                 $('#dialog-loginError').popup('open');
                 return;
@@ -721,6 +719,12 @@
 
             $("[href='#page-user']").html().click();
         }});
+
+        $('#login_psw').val('');
+    }
+
+    $.system.logout = function(){
+        app.storage.removeItem('token');
     }
 })(jQuery);
 

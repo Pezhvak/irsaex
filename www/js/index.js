@@ -90,13 +90,15 @@ var app = {
         }, 15 * 1000);
         setInterval(function(){
 
-            if(app.storage.getItem('token')!=null){
+            if(app.storage.getItem('token')==null){
                 $('#user-login').show();
                 $('#user-dashboard').hide();
+                $('#logout').hide();
             }
             else{
                 $('#user-login').hide();
                 $('#user-dashboard').show();
+                $('#logout').show();
             }
         },100);
     }
