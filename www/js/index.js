@@ -59,5 +59,20 @@ var app = {
                 $('#offlineBar').hide();
             }
         }, 100);
+
+        $('#current_datetime').html("ساعت <span id='currenct_clock'></span>، "+"امروز "+$.system.shamsiDate().toPersian());
+        setInterval(function(){
+            var date = new Date();
+            $("#currenct_clock").html(($.system.numberPad(date.getHours())+":"+$.system.numberPad(date.getMinutes())+":"+$.system.numberPad(date.getSeconds())).toPersian());
+
+            $("[counter]").each(function(){
+                $(this).attr('counter', parseInt($(this).attr('counter'))+1).html(Math.ceil($(this).attr('counter')/60).toString().toPersian());
+            });
+        }, 1000);
+
+        $.system.currency_lastUpdate = $.system.coin_lastUpdate = $.system.gold_lastUpdate = null;
+        $.system.updateCurrencies(true);
+        $.system.updateCoins(true);
+        $.system.updateGolds(true);
     }
 };
