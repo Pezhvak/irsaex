@@ -19,6 +19,7 @@
 var app = {
     // Application Constructor
     connectionStatus: false,
+    storage: '',
     initialize: function() {
         this.bindEvents();
     },
@@ -34,6 +35,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+        this.storage = window.localStorage;
         $("a[data-role=tab]").each(function () {
             var anchor = $(this);
             anchor.bind("click", function () {
@@ -50,9 +52,11 @@ var app = {
             $.mobile.changePage.defaults.transition = 'slide';
         });
 
+        app.connectionStatus = navigator.onLine;
         setInterval(function () {
-            this.connectionStatus = navigator.onLine;
-            if(!this.connectionStatus){
+            app.connectionStatus = navigator.onLine;
+
+            if(!app.connectionStatus){
                 $('#offlineBar').show();
             }
             else{
@@ -74,5 +78,15 @@ var app = {
         $.system.updateCurrencies(true);
         $.system.updateCoins(true);
         $.system.updateGolds(true);
+
+        setInterval(function(){
+            $.system.updateCurrencies();
+        }, 15 * 1000);
+        setInterval(function(){
+            $.system.updateCoins();
+        }, 15 * 1000);
+        setInterval(function(){
+            $.system.updateGolds();
+        }, 15 * 1000);
     }
 };
