@@ -18,6 +18,7 @@
  */
 var app = {
     // Application Constructor
+    connectionStatus: false,
     initialize: function() {
         this.bindEvents();
     },
@@ -36,7 +37,6 @@ var app = {
         $("a[data-role=tab]").each(function () {
             var anchor = $(this);
             anchor.bind("click", function () {
-
                 $.mobile.changePage(anchor.attr("href"), {
                     transition: "none",
                     changeHash: false
@@ -50,14 +50,14 @@ var app = {
             $.mobile.changePage.defaults.transition = 'slide';
         });
 
-        document.addEventListener("offline", this.onOffline, false);
-
-        document.addEventListener("online", this.onOnline, false);
-    },
-    onOffline: function () {
-        alert("Internet not connected")
-    },
-    onOnline: function(){
-    alert("Internet connected")
+        setInterval(function () {
+            this.connectionStatus = navigator.onLine;
+            if(!this.connectionStatus){
+                $('#offlineBar').show();
+            }
+            else{
+                $('#offlineBar').hide();
+            }
+        }, 100);
     }
 };
