@@ -28,6 +28,7 @@
         <title>IRSAEX</title>
     </head>
     <body>
+
     <div id="offlineBar"></div>
     <div id="page-overview" data-role="page" data-theme="b">
         <div data-role="header" data-position="fixed" data-tap-toggle="false">
@@ -106,6 +107,16 @@
                         </tfoot>
                     </table>
                 </span>
+                <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a href="#page-overview" data-role="tab" data-icon="custom" class="ui-btn-active">اطلاعات</a></li>
+                            <li><a href="#page-user" data-role="tab" data-icon="custom">بخش کاربری</a></li>
+                            <li><a href="#page-announcement" data-role="tab" data-icon="custom">اعلامیه ها</a></li>
+                            <li><a href="#page-contactus" data-role="tab" data-icon="custom">تماس با ما</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
         <div data-role="footer" data-position="fixed" data-tap-toggle="false">
@@ -122,14 +133,32 @@
 
     <div id="page-user" data-role="page" data-theme="b">
         <div data-role="header">
+            <a onclick="$.system.logout();" data-icon="delete" id="logout">خروج از سیستم</a>
             <h1></h1>
         </div>
         <div data-role="content">
-            <input type="email" placeholder="پست الکترونیکی" />
-            <input type="password" placeholder="کلمه ی عبور" />
-            <input type="submit" value="ورود به سیستم" />
+            <div id="user-login">
+                <div data-role="popup" id="dialog-loginError" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px; direction: rtl">
+                    <div data-role="header" data-theme="a">
+                        <h1>خطا در ورود</h1>
+                    </div>
+                    <div role="main" class="ui-content">
+                        <h3 class="ui-title">خطا</h3>
+                        <p>اطلاعات وارد شده صحیح نمیباشد، لطفا دباره تلاش کنید</p>
+                        <a class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">باشه</a>
+                    </div>
+                </div>
+                <form onsubmit="$.system.loginUser(); return false;">
+                    <input id="login_email" type="email" placeholder="پست الکترونیکی" />
+                    <input id="login_psw" type="password" placeholder="کلمه ی عبور" />
+                    <input type="submit" value="ورود به سیستم" />
+                </form>
+            </div>
+            <div id="user-dashboard">
+                DASHBOARD
+            </div>
         </div>
-        <div data-role="footer" data-position="fixed">
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
                     <li><a href="#page-overview" data-role="tab" data-icon="custom">اطلاعات</a></li>

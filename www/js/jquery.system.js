@@ -686,6 +686,42 @@
             $('#gold_body').append(tr);
         }
     }
+
+    $.system.core = function(opt){
+        opt = $.extend({complete: function(res){}, method: '', data: ''}, opt);
+        $.mobile.loading('show');
+        $.ajax({url: 'http://irsaex.ir/core/'+opt.method, complete: function(res){
+            $.mobile.loading('hide');
+            opt.complete(res);
+        }, data: opt.data, method: 'POST'});
+    }
+
+    $.system.loginUser = function(){
+
+        if($('#login_email').val().length < 3){
+            $('#login_email').focus();
+            return;
+        }
+
+        if($('#login_psw').val().length < 6){
+            $('#login_psw').focus();
+            return;
+        }
+
+
+        $.system.core({method: 'userLogin', data: 'email='+$('#login_email').val()+'&password='+$('#login_psw').val(), complete: function(res){
+
+            if(res.responseJSON.code == 4){
+                $('#dialog-loginError').popup('open');
+                return;
+            }
+
+            $.system.token = res.responseJSON.data.token;
+            app.storage.setItem('token', $.system.token);
+
+            $("[href='#page-user']").html().click();
+        }});
+    }
 })(jQuery);
 
 String.prototype.toPersian = String.prototype.toFaDigit = function (a) {

@@ -41,7 +41,7 @@ var app = {
             anchor.bind("click", function () {
                 $.mobile.changePage(anchor.attr("href"), {
                     transition: "none",
-                    changeHash: false
+                    changeHash: true
                 });
                 return false;
             });
@@ -88,5 +88,16 @@ var app = {
         setInterval(function(){
             $.system.updateGolds();
         }, 15 * 1000);
+        setInterval(function(){
+
+            if(app.storage.getItem('token')!=null){
+                $('#user-login').show();
+                $('#user-dashboard').hide();
+            }
+            else{
+                $('#user-login').hide();
+                $('#user-dashboard').show();
+            }
+        },100);
     }
 };
