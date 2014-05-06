@@ -58,6 +58,10 @@ body {
     }
 }
 
+#header > H1{
+    
+}
+
 #footer{
     bottom: 0;
     position: absolute;
