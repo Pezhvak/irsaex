@@ -25,7 +25,7 @@ body {
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     -webkit-font-smoothing: antialiased;
-    background-color:#E4E4E4;
+    background-color:#9c9c9c;
     background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
     background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
     background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
@@ -65,7 +65,7 @@ body {
 }
 
 .nav-glyphish-example .ui-btn {
-    padding-top: 80px !important;
+    padding-top: 84px !important;
 
 }
 .nav-glyphish-example .ui-btn:after {
@@ -83,12 +83,11 @@ body {
     width: 25% !important;
 }
 .ui-grid-d > LI > A {
-    font-size: 32px !important;
+    font-size: 28px !important;
     font-family: Tahoma,'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial !important;
 }
 
 #overview:after { background:  url("../img/ico_overview.png") 50% 50% no-repeat; background-size: 64px 64px; }
-#email:after { background:  url("../_assets/img/glyphish-icons/18-envelope.png") 50% 50% no-repeat; background-size: 24px 16px;  }
-#login:after { background:  url("../_assets/img/glyphish-icons/30-key.png") 50% 50% no-repeat;  background-size: 12px 26px; }
-#beer:after { background:  url("../_assets/img/glyphish-icons/88-beermug.png") 50% 50% no-repeat;  background-size: 22px 27px; }
-#coffee:after { background:  url("../_assets/img/glyphish-icons/100-coffee.png") 50% 50% no-repeat;  background-size: 20px 24px; }
+#contactus:after { background:  url("../img/ico_contactus.png") 50% 50% no-repeat; background-size: 64px 64px;  }
+#user:after { background:  url("../img/ico_user.png") 50% 50% no-repeat;  background-size: 64px 64px; }
+#announcement:after { background:  url("../img/ico_announcement.png") 50% 50% no-repeat;  background-size: 64px 64px; }
