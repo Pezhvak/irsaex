@@ -49,5 +49,15 @@ var app = {
             $.mobile.silentScroll(0);
             $.mobile.changePage.defaults.transition = 'slide';
         });
+
+        document.addEventListener("offline", this.onOffline, false);
+
+        document.addEventListener("online", this.onOnline, false);
+    },
+    onOffline: function () {
+        alert("Internet not connected")
+    },
+    onOnline: function(){
+    alert("Internet connected")
     }
 };
