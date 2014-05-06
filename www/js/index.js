@@ -35,7 +35,8 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        this.storage = window.localStorage;
+        app.storage = window.localStorage;
+
         $("a[data-role=tab]").each(function () {
             var anchor = $(this);
             anchor.bind("click", function () {
