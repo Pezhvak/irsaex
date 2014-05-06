@@ -68,30 +68,7 @@ body {
     width: 100%;
 }
 
-.nav-glyphish-example .ui-btn {
-    padding-top: 84px !important;
-
-}
-.nav-glyphish-example .ui-btn:after {
-    width: 64px!important;
-    height: 64px!important;
-    margin-left: -32px !important;
-    box-shadow: none!important;
-    -moz-box-shadow: none!important;
-    -webkit-box-shadow: none!important;
-    -webkit-border-radius: 0 !important;
-    border-radius: 0 !important;
-}
-
-.ui-grid-d > LI{
-    width: 25% !important;
-}
-.ui-grid-d > LI > A {
-    font-size: 28px !important;
-    font-family: Tahoma,'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial !important;
-}
-
-#overview:after { background:  url("../img/ico_overview.png") 50% 50% no-repeat; background-size: 64px 64px; }
-#contactus:after { background:  url("../img/ico_contactus.png") 50% 50% no-repeat; background-size: 64px 64px;  }
-#user:after { background:  url("../img/ico_user.png") 50% 50% no-repeat;  background-size: 64px 64px; }
-#announcement:after { background:  url("../img/ico_announcement.png") 50% 50% no-repeat;  background-size: 64px 64px; }
+A[href='#page-overview']:after { background:  url("../img/ico_overview.png") 50% 50% no-repeat; background-size: 100% 100%; }
+A[href='#page-contactus']:after { background:  url("../img/ico_contactus.png") 50% 50% no-repeat; background-size: 100% 100%;  }
+A[href='#page-user']:after { background:  url("../img/ico_user.png") 50% 50% no-repeat;  background-size: 100% 100%; }
+A[href='#page-announcement']:after { background:  url("../img/ico_announcement.png") 50% 50% no-repeat;  background-size: 100% 100%; }
