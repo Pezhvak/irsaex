@@ -199,6 +199,41 @@ DIV[data-role="header"].headerLogo:after{
     text-align: right;
 }
 
+#credit{
+    direction: rtl;
+    text-align: right;
+    color:#0088bb;
+}
+
+#section_sell_coin,#section_buy_coin{
+    display: none;
+}
+
+FORM.hidden{
+    display: none;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+FORM{
+    direction: rtl;
+    text-align: right;
+}
+
+LABEL.option{
+    text-align: right !important;
+    direction: rtl;
+    padding-right: 50px;
+}
+
+.ui-btn-icon-left:after{
+    right: .5625em !important;
+}
+
+INPUT[type='radio']{
+    right: 0.466em;
+}
+
 A[href='#page-overview']:after { background:  url("../img/ico_overview.png") 50% 50% no-repeat; background-size: 100% 100%; }
 A[href='#page-contactus']:after { background:  url("../img/ico_contactus.png") 50% 50% no-repeat; background-size: 100% 100%;  }
 A[href='#page-user']:after { background:  url("../img/ico_user.png") 50% 50% no-repeat;  background-size: 100% 100%; }

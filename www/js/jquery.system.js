@@ -348,8 +348,15 @@
         var f = Math.round(now-d);
         $('#updateCounter_currencies').attr('counter', f);
 
+
         for(var i = 0; i < res.data.length; i++){
             var record = res.data[i];
+
+            var option = document.createElement("option");
+            option.setAttribute('value', record.id);
+            option.innerHTML = record.name;
+            $('#buy_item_currency').append(option);
+
 
             // Generating Table Row
             var tr = document.createElement("TR");
@@ -483,6 +490,11 @@
 
         for(var i = 0; i < res.data.length; i++){
             var record = res.data[i];
+
+            var option = document.createElement("option");
+            option.setAttribute('value', record.id);
+            option.innerHTML = record.name;
+            $('#buy_item_coin').append(option);
 
             // Generating Table Row
             var tr = document.createElement("TR");
@@ -696,6 +708,74 @@
         }, data: opt.data, method: 'POST'});
     }
 
+    $.system.order = function(orderType){
+        $('#frm_'+orderType).fadeOut('fast', function(){
+            $.mobile.loading('show');
+
+            var type = $("[name='rb_"+orderType+"_type']:checked").val();
+
+            $.ajax({url: 'http://irsaex.ir/account/order', method: 'post', data: 'token='+app.storage.getItem('token')+'&order_type='+type+'&item_id='+$('#'+orderType+'_item_'+type).val()+'&q='+$('#'+orderType+'_q_'+type).val()+'&operation='+orderType, complete: function(res){
+                resp = res.responseJSON;
+                $.mobile.loading('hide');
+                if(resp.data.price == undefined){
+                    $.system.message({title: 'خطا', message: 'مقدار وارد شده صحیح نیست'});
+                    $.system.orderCancel('buy');
+                    return;
+                }
+
+                $('#frm_'+resp.data.operation+'_confirm').attr('orderid', resp.data.id).fadeIn('fast');
+                $('#'+resp.data.operation+'_total_price').html($.system.number_format(resp.data.price) + " تومان");
+                $('#'+resp.data.operation+'_percentage').html($.system.number_format((resp.data.price / 100) *10) + " تومان");
+            }});
+        });
+    }
+
+    $.system.orderConfirm = function(orderType){
+        $('#frm_'+orderType+'_confirm').fadeOut('fast', function(){
+            $.mobile.loading('show');
+            $.ajax({url: 'http://irsaex.ir/account/orderConfirm', method: 'post', data: 'token='+app.storage.getItem('token')+'&order_id='+$('#frm_'+orderType+'_confirm').attr('orderid'), complete: function(res){
+                $.mobile.loading('hide');
+
+                resp=res.responseJSON;
+                switch(resp.code){
+                    case 1000:{
+                        if(resp.data.operation == 'buy')
+                            $.system.message({title: 'سفارش', message: 'سفارش شما با موفقیت ثبت شد، لطفا برای دریافت به محل صرافی مراجعه فرمایید'});
+                        else
+                            $.system.message({title: 'سفارش', message: 'سفارش شما با موفقیت ثبت شد، لطفا برای تحویل و دریافت وجه به محل صرافی مراجعه فرمایید'});
+
+                        $('#user_credit, #key_price').html($.system.number_format(resp.data.credit));
+                    }break;
+                    case -100:{
+                        $.system.message({title: 'سفارش', message: 'سفارش منقضی شده، لطفا دوباره تلاش کنید'});
+                    }break;
+                    case -200:{
+                        $.system.message({title: 'سفارش', message: 'اعتبار حساب کافی نیست، لطفا حساب خود را شارژ کنید سپس دوباره تلاش فرمایید'});
+                    }break;
+                }
+
+                $.system.orderCancel(resp.data.operation);
+
+            }});
+        });
+    }
+
+    $.system.orderCancel = function(orderType){
+        $('#frm_'+orderType+'_confirm').fadeOut('fast', function(){
+            $('#'+orderType+'_q_currency').val('');
+            $('#'+orderType+'_q_coin').val('');
+            $('#frm_'+orderType).fadeIn('fast');
+        });
+    }
+
+    $.system.message = function(opts){
+        opts = $.extend({title: 'پیغام', message: ''}, opts);
+        $('#dialog-message').popup('open');
+
+        $("#message-title").html(opts.title);
+        $("#message-body").html(opts.message);
+    }
+
     $.system.goBack = function goBack(){
         var previous = $.mobile.activePage.prev('[data-role=page]');
         $.mobile.changePage(previous, {
@@ -736,6 +816,7 @@
 
     $.system.resetUI=function(){
         $('#welcome').html(app.storage.getItem('firstname')+' '+app.storage.getItem('lastname'));
+        $('#credit').html('اعتبار حساب: '+ $.system.number_format(app.storage.getItem('credit'))+' ریال');
     }
 
     $.system.logout = function(){

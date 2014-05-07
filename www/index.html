@@ -156,9 +156,10 @@
             </div>
             <div id="user-dashboard">
                 <h1 id="welcome"></h1>
+                <h4 id="credit"></h4>
                 <ul data-role="listview" data-inset="true">
                     <li><a href="#page-changePassword">تغییر کلمه ی عبور</a></li>
-                    <li><a href="#page-changePassword">سفارش خرید سکه / ارز</a></li>
+                    <li><a href="#page-requestBuy">سفارش خرید سکه / ارز</a></li>
                     <li><a href="#page-changePassword">سفارش فروش سکه / ارز</a></li>
                 </ul>
             </div>
@@ -195,6 +196,54 @@
                 <input type="password" id="currentPass" title="گذرواژه ی کنونی" placeholder="گذرواژه ی کنونی" />
                 <input type="password" id="newPass" title="گذرواژه ای درخواستی" placeholder="گذرواژه ی نو" />
                 <input type="password" id="reNewPass" title="تکرار گذرواژه ی درخواستی" placeholder="تکرار گذرواژه" />
+            </form>
+        </div>
+    </div>
+
+    <div id="page-requestBuy" data-role="page" data-theme="b">
+        <div data-role="popup" id="dialog-message" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px; direction: rtl">
+            <div data-role="header" data-theme="a">
+                <h1 id="message-title">سفارش خرید</h1>
+            </div>
+            <div role="main" class="ui-content">
+                <h3 class="ui-title">پیغام</h3>
+                <p id="message-body"></p>
+                <a class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">باشه</a>
+            </div>
+        </div>
+        <div data-role="header" class="noLogo">
+            <a data-icon="back" data-rel="back" data-direction="forward">بازگشت</a>
+            <h1>سفارش خرید سکه / ارز</h1>
+        </div>
+        <div data-role="content">
+            <form id="frm_buy" onsubmit="$.system.order('buy'); return false;">
+                <b class="key">        نوع سفارش</b>
+                <input type="radio" id="rb_buy_type_currency" name="rb_buy_type" onchange="if(this.checked) {$('#section_buy_currency').css('display', 'block'); $('#section_buy_coin').css('display', 'none');}" value="currency" checked /><label class="option" for="rb_buy_type_currency"> ارز</label>
+                <input type="radio" id="rb_buy_type_coin" name="rb_buy_type" onchange="if(this.checked) {$('#section_buy_currency').css('display', 'none'); $('#section_buy_coin').css('display', 'block');}" value="coin" /><label class="option" for="rb_buy_type_coin"> سکه</label>
+                <div id="section_buy_currency">
+                    <input id="buy_q_currency" type="number" placeholder="مقدار ارز به تومان وارد شود" />
+                    <select id="buy_item_currency">
+
+                    </select>
+                    <input type="submit" value="سفارش" />
+                </div>
+
+                <div id="section_buy_coin">
+                    <input id="buy_q_coin" type="number" placeholder="تعداد مورد نظر را وارد کنید"  />
+                    <select id="buy_item_coin" class="coinButton">
+
+                    </select>
+                    <input type="submit" value="سفارش" />
+                </div>
+            </form>
+            <form id="frm_buy_confirm" class="hidden" onsubmit="$.system.orderConfirm('buy'); return false;">
+                <h3>اطلاعات سفارش</h3>
+                هزینه ی سفارش شما <b id="buy_total_price"></b> می باشد، در صورت تایید مبلغ <b id="buy_percentage"></b> (۱۰٪ مبلغ کل) از اعتبار حساب شما کسر خواهد شد، آیا تایید میکنید؟
+                <br />
+                <div class="button_holder">
+                    <input type="submit" value="تایید" />
+                    <input type="button" value="انصراف" onclick="$.system.orderCancel('buy');" />
+                </div>
             </form>
         </div>
     </div>
