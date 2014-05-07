@@ -194,6 +194,11 @@ DIV[data-role="header"].headerLogo:after{
     text-align: right !important;
 }
 
+#welcome{
+    direction: rtl;
+    text-align: right;
+}
+
 A[href='#page-overview']:after { background:  url("../img/ico_overview.png") 50% 50% no-repeat; background-size: 100% 100%; }
 A[href='#page-contactus']:after { background:  url("../img/ico_contactus.png") 50% 50% no-repeat; background-size: 100% 100%;  }
 A[href='#page-user']:after { background:  url("../img/ico_user.png") 50% 50% no-repeat;  background-size: 100% 100%; }

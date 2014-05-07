@@ -36,6 +36,9 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.storage = window.localStorage;
+        //app.storage.removeItem('token');
+
+        $.system.resetUI();
 
         $("a[data-role=tab]").each(function () {
             var anchor = $(this);

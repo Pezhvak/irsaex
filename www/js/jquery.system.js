@@ -723,11 +723,19 @@
 
             $.system.token = res.responseJSON.data.token;
             app.storage.setItem('token', $.system.token);
+            app.storage.setItem('firstname', res.responseJSON.data.firstname);
+            app.storage.setItem('lastname', res.responseJSON.data.lastname);
+            app.storage.setItem('credit', res.responseJSON.data.credit);
 
+            $.system.resetUI();
             $("[href='#page-user']").html().click();
         }});
 
         $('#login_psw').val('');
+    }
+
+    $.system.resetUI=function(){
+        $('#welcome').html(app.storage.getItem('firstname')+' '+app.storage.getItem('lastname'));
     }
 
     $.system.logout = function(){
