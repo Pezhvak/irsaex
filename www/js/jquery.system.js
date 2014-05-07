@@ -851,7 +851,6 @@
             app.storage.setItem('credit', res.responseJSON.data.credit);
 
             $.system.resetUI();
-            $("[href='#page-user']").html().click();
         }});
 
         $('#login_psw').val('');

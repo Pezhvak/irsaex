@@ -234,7 +234,7 @@ INPUT[type='radio']{
     right: 0.466em;
 }
 
-INPUT[type='text'],INPUT[type='password']{
+INPUT[type='email'],INPUT[type='text'],INPUT[type='password']{
     direction: ltr;
     text-align: left;
 }
