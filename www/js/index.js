@@ -36,7 +36,7 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.storage = window.localStorage;
-        //app.storage.removeItem('token');
+        app.storage.removeItem('token');
 
         $.system.resetUI();
 
@@ -67,6 +67,14 @@ var app = {
                 $('#offlineBar').hide();
             }
         }, 100);
+
+        if(app.connectionStatus){
+            $.get('http://irsaex.ir/contact').done(function(res){
+                app.storage.setItem('contact', res);
+            });
+        }
+
+        $('#page-contactus').find('[data-role="content"]').html(app.storage.getItem('contact'));
 
         $('#current_datetime').html("ساعت <span id='currenct_clock'></span>، "+"امروز "+$.system.shamsiDate().toPersian());
         setInterval(function(){

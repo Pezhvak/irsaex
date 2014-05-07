@@ -339,6 +339,31 @@
         }
     }
 
+    $.system.isNumber = function(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
+    $.system.convertCurrency = function(){
+        var ccFromPrice = $('#ccFrom').val();
+        var ccToPrice = $('#ccTo').val();
+
+        var q = $('#display_convertor').val();
+        if(q == '' || !$.system.isNumber(q)){
+            $('#display_convertor').val('مقدار را اینجا وارد کنید');
+            return;
+        }
+        if(ccFromPrice==0 || ccToPrice==0){
+            $('#display_convertor').val('واحد ها را انتخاب کنید');
+            return;
+        }
+
+        ccFromPrice = parseInt(ccFromPrice);
+        ccToPrice = parseInt(ccToPrice);
+
+        var res = parseFloat((q*ccFromPrice)/ccToPrice).toFixed(2);
+        $('#display_convertor').css({fontSize:18}).val(q+' '+$('#ccFrom').find(':selected').attr('code')+' = '+res+' '+$('#ccTo').find(':selected').attr('code'));
+    }
+
     $.system.processCurrencies = function(res){
         var res = $.parseJSON(res);
         $.system.currency_lastUpdate = res.last_update;
@@ -351,14 +376,21 @@
 
         $('#buy_item_currency').val([]);
         $('#sell_item_currency').val([]);
+        $('#ccFrom, #ccTo').val([]);
         for(var i = 0; i < res.data.length; i++){
             var record = res.data[i];
 
             var option = document.createElement("option");
             option.setAttribute('value', record.id);
             option.innerHTML = record.name;
+
+            var optionPrice = document.createElement("option");
+            optionPrice.setAttribute('value', record.fields.sell);
+            optionPrice.setAttribute('code', record.code);
+            optionPrice.innerHTML = record.name;
             $('#buy_item_currency').append(option);
             $('#sell_item_currency').append(option);
+            $('#ccFrom, #ccTo').append(optionPrice);
 
 
             // Generating Table Row

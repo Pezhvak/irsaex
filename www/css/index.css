@@ -234,7 +234,13 @@ INPUT[type='radio']{
     right: 0.466em;
 }
 
+FORM DIV.ui-btn{
+    width: 18% !important;
+    margin: 0;
+    display: inline-block !important;
+}
+
 A[href='#page-overview']:after { background:  url("../img/ico_overview.png") 50% 50% no-repeat; background-size: 100% 100%; }
 A[href='#page-contactus']:after { background:  url("../img/ico_contactus.png") 50% 50% no-repeat; background-size: 100% 100%;  }
 A[href='#page-user']:after { background:  url("../img/ico_user.png") 50% 50% no-repeat;  background-size: 100% 100%; }
-A[href='#page-announcement']:after { background:  url("../img/ico_announcement.png") 50% 50% no-repeat;  background-size: 100% 100%; }
+A[href='#page-calc']:after { background:  url("../img/ico_calc.png") 50% 50% no-repeat;  background-size: 100% 100%; }

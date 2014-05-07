@@ -112,7 +112,7 @@
                         <ul>
                             <li><a href="#page-overview" data-role="tab" data-icon="custom" class="ui-btn-active">اطلاعات</a></li>
                             <li><a href="#page-user" data-role="tab" data-icon="custom">بخش کاربری</a></li>
-                            <li><a href="#page-announcement" data-role="tab" data-icon="custom">اعلامیه ها</a></li>
+                            <li><a href="#page-calc" data-role="tab" data-icon="custom">ابزار</a></li>
                             <li><a href="#page-contactus" data-role="tab" data-icon="custom">تماس با ما</a></li>
                         </ul>
                     </div>
@@ -124,13 +124,12 @@
                 <ul>
                     <li><a href="#page-overview" data-role="tab" data-icon="custom" class="ui-btn-active">اطلاعات</a></li>
                     <li><a href="#page-user" data-role="tab" data-icon="custom">بخش کاربری</a></li>
-                    <li><a href="#page-announcement" data-role="tab" data-icon="custom">اعلامیه ها</a></li>
+                    <li><a href="#page-calc" data-role="tab" data-icon="custom">ابزار</a></li>
                     <li><a href="#page-contactus" data-role="tab" data-icon="custom">تماس با ما</a></li>
                 </ul>
             </div>
         </div>
     </div>
-
     <div id="page-user" data-role="page" data-theme="b">
         <div data-role="header" class="headerLogo" data-position="fixed" data-tap-toggle="false">
             <a onclick="$.system.logout();" data-icon="delete" id="logout">خروج از سیستم</a>
@@ -169,8 +168,119 @@
                 <ul>
                     <li><a href="#page-overview" data-role="tab" data-icon="custom">اطلاعات</a></li>
                     <li><a href="#page-user" data-role="tab" data-icon="custom" class="ui-btn-active">بخش کاربری</a></li>
-                    <li><a href="#page-announcement" data-role="tab" data-icon="custom">اعلامیه ها</a></li>
+                    <li><a href="#page-calc" data-role="tab" data-icon="custom">ابزار</a></li>
                     <li><a href="#page-contactus" data-role="tab" data-icon="custom">تماس با ما</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="page-calc" data-role="page" data-theme="b">
+        <div data-role="header" class="headerLogo" data-position="fixed" data-tap-toggle="false">
+            <h1></h1>
+        </div>
+        <div data-role="content">
+            <div data-role="collapsible" data-theme="b" data-content-theme="b">
+                <h4>تبدیل ارز</h4>
+                <p>
+                    <div class="panel_convert">
+                        <div>
+                            <div class="ico_convert"></div>
+                        </div>
+                        <div class="tab_content">
+                            <input type="text" class="convertor" id="display_convertor" placeholder="مقدار را وارد کنید" />
+                            <select class="flagButton" id="ccFrom">
+                                <option value='0' data-title="">انتخاب کنید</option>
+                                <option code="IRR" value='1' data-image="_images/dd/blank.gif" data-imagecss="flag ir" data-title="تومان">تومان</option>
+                            </select>
+                            <br />
+                            <select class="flagButton" id="ccTo">
+                                <option value='0' data-title="">انتخاب کنید</option>
+                                <option code="IRR" value='1' data-image="_images/dd/blank.gif" data-imagecss="flag ir" data-title="تومان">تومان</option>
+                            </select>
+
+
+                            <div class="button_holder">
+                                <input type="button" value="محاسبه" onclick="$.system.convertCurrency();" />
+                            </div>
+                        </div>
+                    </div>
+                </p>
+            </div>
+            <div data-role="collapsible" data-theme="b" data-content-theme="b">
+                <h4>ماشین حساب</h4>
+                <p>
+                    <div class="panel_calc">
+                        <div>
+                            <div class="ico_calc"></div>
+                        </div>
+                        <div class="tab_content">
+                            <form name="Calc" id="calc">
+                                <TABLE width="100%">
+                                    <TR>
+                                        <TD>
+                                            <INPUT TYPE="text" id="display_calc" class="convertor" NAME="Input" Size="16" placeholder="0" />
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD dir="ltr" align="center">
+                                            <div>
+                                                <INPUT TYPE="button" NAME="one"   VALUE="  1  " OnClick="Calc.Input.value += '1'" />
+                                                <INPUT TYPE="button" NAME="two"   VALUE="  2  " OnCLick="Calc.Input.value += '2'" />
+                                                <INPUT TYPE="button" NAME="three" VALUE="  3  " OnClick="Calc.Input.value += '3'" />
+                                                <INPUT TYPE="button" NAME="plus"  VALUE="  +  " OnClick="Calc.Input.value += ' + '" />
+                                            </div>
+                                            <div>
+                                                <INPUT TYPE="button" NAME="four"  VALUE="  4  " OnClick="Calc.Input.value += '4'" />
+                                                <INPUT TYPE="button" NAME="five"  VALUE="  5  " OnCLick="Calc.Input.value += '5'" />
+                                                <INPUT TYPE="button" NAME="six"   VALUE="  6  " OnClick="Calc.Input.value += '6'" />
+                                                <INPUT TYPE="button" NAME="minus" VALUE="  -  " OnClick="Calc.Input.value += ' - '" />
+                                            </div>
+                                            <div>
+                                                <INPUT TYPE="button" NAME="seven" VALUE="  7  " OnClick="Calc.Input.value += '7'" />
+                                                <INPUT TYPE="button" NAME="eight" VALUE="  8  " OnCLick="Calc.Input.value += '8'" />
+                                                <INPUT TYPE="button" NAME="nine"  VALUE="  9  " OnClick="Calc.Input.value += '9'" />
+                                                <INPUT TYPE="button" NAME="times" VALUE="  x  " OnClick="Calc.Input.value += ' * '" />
+                                            </div>
+                                            <div>
+                                                <INPUT TYPE="button" NAME="clear" VALUE="  C  " OnClick="Calc.Input.value = ''" />
+                                                <INPUT TYPE="button" NAME="zero"  VALUE="  0  " OnClick="Calc.Input.value += '0'" />
+                                                <INPUT TYPE="button" NAME="DoIt"  VALUE="  =  " OnClick="Calc.Input.value = eval(Calc.Input.value)" />
+                                                <INPUT TYPE="button" NAME="div"   VALUE="  /  " OnClick="Calc.Input.value += ' / '" />
+                                            </div>
+                                        </TD>
+                                    </TR>
+                                </TABLE>
+                            </form>
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page-overview" data-role="tab" data-icon="custom">اطلاعات</a></li>
+                    <li><a href="#page-user" data-role="tab" data-icon="custom">بخش کاربری</a></li>
+                    <li><a href="#page-calc" data-role="tab" data-icon="custom" class="ui-btn-active">ابزار</a></li>
+                    <li><a href="#page-contactus" data-role="tab" data-icon="custom">تماس با ما</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="page-contactus" data-role="page" data-theme="b">
+        <div data-role="header" class="headerLogo" data-position="fixed" data-tap-toggle="false">
+            <h1></h1>
+        </div>
+        <div data-role="content">
+
+        </div>
+        <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page-overview" data-role="tab" data-icon="custom">اطلاعات</a></li>
+                    <li><a href="#page-user" data-role="tab" data-icon="custom">بخش کاربری</a></li>
+                    <li><a href="#page-calc" data-role="tab" data-icon="custom">ابزار</a></li>
+                    <li><a href="#page-contactus" data-role="tab" data-icon="custom" class="ui-btn-active">تماس با ما</a></li>
                 </ul>
             </div>
         </div>
