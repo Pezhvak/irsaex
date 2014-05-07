@@ -234,7 +234,7 @@ INPUT[type='radio']{
     right: 0.466em;
 }
 
-FORM DIV.ui-btn{
+FORM[name='Calc'] DIV.ui-btn{
     width: 18% !important;
     margin: 0;
     display: inline-block !important;
