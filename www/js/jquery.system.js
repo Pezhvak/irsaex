@@ -403,8 +403,7 @@
             var td_flag = document.createElement("TD");
             td_flag.align = "center";
             var img_flag = document.createElement("IMG");
-            img_flag.src = '_images/biggerFlags/'+record.flag.toLowerCase()+'.png';
-            img_flag.className = 'currencyFlag';
+            img_flag.src = '/_images/biggerFlags/'+record.flag.toLowerCase()+'.png';
             img_flag.style.maxWidth = '32px';
 
             td_flag.appendChild(img_flag);
