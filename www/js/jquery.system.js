@@ -349,6 +349,8 @@
         $('#updateCounter_currencies').attr('counter', f);
 
 
+        $('#buy_item_currency').val([]);
+        $('#sell_item_currency').val([]);
         for(var i = 0; i < res.data.length; i++){
             var record = res.data[i];
 
@@ -356,6 +358,7 @@
             option.setAttribute('value', record.id);
             option.innerHTML = record.name;
             $('#buy_item_currency').append(option);
+            $('#sell_item_currency').append(option);
 
 
             // Generating Table Row
@@ -488,6 +491,8 @@
         var f = Math.round(now-d);
         $('#updateCounter_coins').attr('counter', f);
 
+        $('#buy_item_coin').val([]);
+        $('#sell_item_coin').val([]);
         for(var i = 0; i < res.data.length; i++){
             var record = res.data[i];
 
@@ -495,6 +500,7 @@
             option.setAttribute('value', record.id);
             option.innerHTML = record.name;
             $('#buy_item_coin').append(option);
+            $('#sell_item_coin').append(option);
 
             // Generating Table Row
             var tr = document.createElement("TR");
@@ -718,8 +724,8 @@
                 resp = res.responseJSON;
                 $.mobile.loading('hide');
                 if(resp.data.price == undefined){
-                    $.system.message({title: 'خطا', message: 'مقدار وارد شده صحیح نیست'});
-                    $.system.orderCancel('buy');
+                    $.system.message({title: 'خطا', message: 'مقدار وارد شده صحیح نیست', dialogID: 'dialog-message'+$.system.capitaliseFirstLetter(orderType)});
+                    $.system.orderCancel(orderType);
                     return;
                 }
 
@@ -740,17 +746,17 @@
                 switch(resp.code){
                     case 1000:{
                         if(resp.data.operation == 'buy')
-                            $.system.message({title: 'سفارش', message: 'سفارش شما با موفقیت ثبت شد، لطفا برای دریافت به محل صرافی مراجعه فرمایید'});
+                            $.system.message({title: 'سفارش', message: 'سفارش شما با موفقیت ثبت شد، لطفا برای دریافت به محل صرافی مراجعه فرمایید', dialogID: 'dialog-message'+$.system.capitaliseFirstLetter(orderType)});
                         else
-                            $.system.message({title: 'سفارش', message: 'سفارش شما با موفقیت ثبت شد، لطفا برای تحویل و دریافت وجه به محل صرافی مراجعه فرمایید'});
+                            $.system.message({title: 'سفارش', message: 'سفارش شما با موفقیت ثبت شد، لطفا برای تحویل و دریافت وجه به محل صرافی مراجعه فرمایید', dialogID: 'dialog-message'+$.system.capitaliseFirstLetter(orderType)});
 
                         $('#user_credit, #key_price').html($.system.number_format(resp.data.credit));
                     }break;
                     case -100:{
-                        $.system.message({title: 'سفارش', message: 'سفارش منقضی شده، لطفا دوباره تلاش کنید'});
+                        $.system.message({title: 'سفارش', message: 'سفارش منقضی شده، لطفا دوباره تلاش کنید', dialogID: 'dialog-message'+$.system.capitaliseFirstLetter(orderType)});
                     }break;
                     case -200:{
-                        $.system.message({title: 'سفارش', message: 'اعتبار حساب کافی نیست، لطفا حساب خود را شارژ کنید سپس دوباره تلاش فرمایید'});
+                        $.system.message({title: 'سفارش', message: 'اعتبار حساب کافی نیست، لطفا حساب خود را شارژ کنید سپس دوباره تلاش فرمایید', dialogID: 'dialog-message'+$.system.capitaliseFirstLetter(orderType)});
                     }break;
                 }
 
@@ -758,6 +764,11 @@
 
             }});
         });
+    }
+
+    $.system.capitaliseFirstLetter = function(string)
+    {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     $.system.orderCancel = function(orderType){
@@ -769,11 +780,11 @@
     }
 
     $.system.message = function(opts){
-        opts = $.extend({title: 'پیغام', message: ''}, opts);
-        $('#dialog-message').popup('open');
+        opts = $.extend({title: 'پیغام', message: '', dialogID: ''}, opts);
+        $('#'+opts.dialogID).popup('open');
 
-        $("#message-title").html(opts.title);
-        $("#message-body").html(opts.message);
+        $('#'+opts.dialogID).find(".message-title").html(opts.title);
+        $('#'+opts.dialogID).find(".message-body").html(opts.message);
     }
 
     $.system.goBack = function goBack(){

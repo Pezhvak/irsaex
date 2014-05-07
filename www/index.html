@@ -132,7 +132,7 @@
     </div>
 
     <div id="page-user" data-role="page" data-theme="b">
-        <div data-role="header" class="headerLogo">
+        <div data-role="header" class="headerLogo" data-position="fixed" data-tap-toggle="false">
             <a onclick="$.system.logout();" data-icon="delete" id="logout">خروج از سیستم</a>
             <h1></h1>
         </div>
@@ -160,7 +160,7 @@
                 <ul data-role="listview" data-inset="true">
                     <li><a href="#page-changePassword">تغییر کلمه ی عبور</a></li>
                     <li><a href="#page-requestBuy">سفارش خرید سکه / ارز</a></li>
-                    <li><a href="#page-changePassword">سفارش فروش سکه / ارز</a></li>
+                    <li><a href="#page-requestSell">سفارش فروش سکه / ارز</a></li>
                 </ul>
             </div>
         </div>
@@ -186,7 +186,7 @@
                 <a class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">باشه</a>
             </div>
         </div>
-        <div data-role="header" class="noLogo">
+        <div data-role="header" class="noLogo" data-position="fixed" data-tap-toggle="false">
             <a data-icon="back" data-rel="back" data-direction="forward">بازگشت</a>
             <h1>تغییر کلمه ی عبور</h1>
             <a data-icon="recycle" data-direction="forward" onclick="$.system.changeUserPassword();">تغییر</a>
@@ -201,19 +201,20 @@
     </div>
 
     <div id="page-requestBuy" data-role="page" data-theme="b">
-        <div data-role="popup" id="dialog-message" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px; direction: rtl">
+        <div data-role="popup" id="dialog-messageBuy" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px; direction: rtl">
             <div data-role="header" data-theme="a">
-                <h1 id="message-title">سفارش خرید</h1>
+                <h1 class="message-title">سفارش خرید</h1>
             </div>
             <div role="main" class="ui-content">
                 <h3 class="ui-title">پیغام</h3>
-                <p id="message-body"></p>
+                <p class="message-body"></p>
                 <a class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">باشه</a>
             </div>
         </div>
-        <div data-role="header" class="noLogo">
+        <div data-role="header" class="noLogo" data-position="fixed" data-tap-toggle="false">
             <a data-icon="back" data-rel="back" data-direction="forward">بازگشت</a>
             <h1>سفارش خرید سکه / ارز</h1>
+            <a data-icon="tag" onclick="$.system.order('buy');">سفارش</a>
         </div>
         <div data-role="content">
             <form id="frm_buy" onsubmit="$.system.order('buy'); return false;">
@@ -225,7 +226,7 @@
                     <select id="buy_item_currency">
 
                     </select>
-                    <input type="submit" value="سفارش" />
+
                 </div>
 
                 <div id="section_buy_coin">
@@ -233,7 +234,6 @@
                     <select id="buy_item_coin" class="coinButton">
 
                     </select>
-                    <input type="submit" value="سفارش" />
                 </div>
             </form>
             <form id="frm_buy_confirm" class="hidden" onsubmit="$.system.orderConfirm('buy'); return false;">
@@ -244,6 +244,47 @@
                     <input type="submit" value="تایید" />
                     <input type="button" value="انصراف" onclick="$.system.orderCancel('buy');" />
                 </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="page-requestSell" data-role="page" data-theme="b">
+        <div data-role="popup" id="dialog-messageSell" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px; direction: rtl">
+            <div data-role="header" data-theme="a">
+                <h1 class="message-title">سفارش خرید</h1>
+            </div>
+            <div role="main" class="ui-content">
+                <h3 class="ui-title">پیغام</h3>
+                <p class="message-body"></p>
+                <a class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">باشه</a>
+            </div>
+        </div>
+        <div data-role="header" class="noLogo" data-position="fixed" data-tap-toggle="false">
+            <a data-icon="back" data-rel="back" data-direction="forward">بازگشت</a>
+            <h1>سفارش فروش سکه / ارز</h1>
+            <a data-icon="tag" onclick="$.system.order('sell');">سفارش</a>
+        </div>
+        <div data-role="content">
+            <form id="frm_sell" onsubmit="$.system.order('sell'); return false;">
+                <b class="key">        نوع فروش</b>
+                <input type="radio" id="rb_sell_type_currency" name="rb_sell_type" onchange="if(this.checked) {$('#section_sell_currency').css('display', 'block'); $('#section_sell_coin').css('display', 'none');}" value="currency" checked /><label class="option" for="rb_sell_type_currency"> ارز</label>
+                <input type="radio" id="rb_sell_type_coin" name="rb_sell_type" onchange="if(this.checked) {$('#section_sell_currency').css('display', 'none'); $('#section_sell_coin').css('display', 'block');}" value="coin" /><label class="option" for="rb_sell_type_coin"> سکه</label>
+                <div id="section_sell_currency">
+                    <input id="sell_q_currency" type="number" placeholder="مقدار ارز به تومان وارد شود" />
+                    <select id="sell_item_currency"></select>
+                </div>
+
+                <div id="section_sell_coin">
+                    <input id="sell_q_coin" type="number" placeholder="تعداد مورد نظر را وارد کنید"  />
+                    <select id="sell_item_coin"></select>
+                </div>
+            </form>
+            <form id="frm_sell_confirm" class="hidden" onsubmit="$.system.orderConfirm('sell'); return false;">
+                <h3>اطلاعات فروش</h3>
+                مبلغ فروش شما <b id="sell_total_price"></b> می باشد، در صورت تایید مبلغ <b id="sell_percentage"></b> (۱۰٪ مبلغ کل) از اعتبار حساب شما کسر خواهد شد، آیا تایید میکنید؟
+                <br />
+                <div class="button_holder"><input type="submit" value="تایید"  />
+                <input type="button" value="انصراف" onclick="$.system.orderCancel('sell');" /></div>
             </form>
         </div>
     </div>
