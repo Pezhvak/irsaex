@@ -403,7 +403,7 @@
             var td_flag = document.createElement("TD");
             td_flag.align = "center";
             var img_flag = document.createElement("IMG");
-            img_flag.src = '/_images/biggerFlags/'+record.flag.toLowerCase()+'.png';
+            img_flag.src = 'img/flags/'+record.flag.toLowerCase()+'.png';
             img_flag.style.maxWidth = '32px';
 
             td_flag.appendChild(img_flag);
@@ -543,7 +543,7 @@
             var td_icon = document.createElement("TD");
             td_icon.align = "center";
             var img_icon = document.createElement("IMG");
-            img_icon.src = '_images/golds/'+record.icon+'.png';
+            img_icon.src = 'img/golds/'+record.icon+'.png';
 
             td_icon.appendChild(img_icon);
 
