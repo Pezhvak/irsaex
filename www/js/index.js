@@ -110,7 +110,6 @@ var app = {
                 $('#user-login').hide();
                 $('#user-dashboard').show();
                 $('#logout').show();
-                alert('show')
             }
         },1000);
     }

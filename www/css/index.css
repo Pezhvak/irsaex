@@ -166,19 +166,19 @@ DIV[data-role="header"].headerLogo:after{
 }
 
 ::-webkit-input-placeholder {
-    text-align: right;
+    text-align: right !important;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-    text-align: right;
+    text-align: right !important;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-    text-align: right;
+    text-align: right !important;
 }
 
 :-ms-input-placeholder {
-    text-align: right;
+    text-align: right !important;
 }
 
 #user-login, #user-dashboard{
