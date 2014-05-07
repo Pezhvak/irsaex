@@ -240,6 +240,11 @@ FORM[name='Calc'] DIV.ui-btn{
     display: inline-block !important;
 }
 
+[data-role="collapsible"] > H4 > A{
+    text-align: right !important;
+    padding-right: 2.5em;
+}
+
 A[href='#page-overview']:after { background:  url("../img/ico_overview.png") 50% 50% no-repeat; background-size: 100% 100%; }
 A[href='#page-contactus']:after { background:  url("../img/ico_contactus.png") 50% 50% no-repeat; background-size: 100% 100%;  }
 A[href='#page-user']:after { background:  url("../img/ico_user.png") 50% 50% no-repeat;  background-size: 100% 100%; }
