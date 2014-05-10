@@ -419,6 +419,7 @@
             // Generating Change Column
             var td_changes = document.createElement("TD");
             td_changes.innerHTML = $.system.number_format(record.fields.difference);
+            td_changes.className = 'col-hidden';
 
             var div_changeIcon = document.createElement('DIV');
             div_changeIcon.className = parseInt(record.fields.difference) < 0 ? 'icon-arrow-down' : parseInt(record.fields.difference) == 0 ? '' : 'icon-arrow-up';
